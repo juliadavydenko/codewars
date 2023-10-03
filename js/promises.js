@@ -1,3 +1,5 @@
+// 2 - promises
+
 const assets = {
   fruits: ["mango", "banana", "passionfruit"],
   liquid: ["water", "ice"],
@@ -6,21 +8,15 @@ const assets = {
 const is_shop_open = true;
 
 const order = (time, work) => {
+  return new Promise((resolve, reject) => {
+    if (is_shop_open) {
+      setTimeout(() => {
+        resolve(work());
+      }, time);
+    } else {
+      reject(console.log("the shop is closed"));
+    }
+  });
+};
 
-    return new Promise( (resolve, reject)={
-
-        if(is_shop_open){
-            setTimeout(()=>{
-                resolve( work() )
-            }, time)
-            
-        }
-
-        else{
-            reject(console.log("the shop is closed"))
-        }
-    } )
-
-}
-
-order(2000, ()=>console.log(`${assets.fruits[0]}`))
+order(2000, () => console.log(`${assets.fruits[0]}`));
