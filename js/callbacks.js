@@ -1,3 +1,5 @@
+// "callback h - not the way it should be done"
+
 const assets = {
   fruits: ["mango", "banana", "passionfruit"],
   liquid: ["water", "ice"],
@@ -25,3 +27,5 @@ const production = () => {
 };
 
 order(0, production);
+
+// solution of callbacks is always promises
