@@ -35,3 +35,5 @@ async function order() {
     console.log("runs anyway");
   }
 }
+
+order();
