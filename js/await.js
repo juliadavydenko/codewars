@@ -6,3 +6,7 @@ const assets = {
 };
 
 const is_shop_open = true;
+
+const toppings_choice = () => {
+  return new Promise((resolve, reject));
+};
