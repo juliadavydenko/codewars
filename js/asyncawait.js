@@ -39,3 +39,20 @@ async function order() {
 order().then(() => {
   console.log("sequence");
 });
+
+async function getAstronauts() {
+  // await waits until we have data from fetch before it runs the next line. No need for callbacks 🤯
+  console.log("Before we fetch data");
+  const astronautsResponse = await fetch(
+    "http://api.open-notify.org/astros.json"
+  );
+  console.log(
+    "This is logged out after some time, even though the code looks synchronous! 🤯"
+  );
+  const astronauts = await astronautsResponse.json();
+  console.log("This is logged out after some time! 🤯");
+  console.log(astronauts);
+  return astronauts;
+}
+
+getAstronauts();
