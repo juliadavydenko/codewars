@@ -46,3 +46,34 @@ async function fetchWithError() {
   }
 }
 fetchWithError();
+
+// Create a promise that resolves after 4 seconds. Use this promise to log out the text 'hello' after 4 seconds.
+
+const delay = (millisec) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, millisec);
+  });
+};
+
+delay(4000)
+  .then(() => {
+    console.log("Hello");
+  })
+  .catch((error) => {
+    console.error("Error", error);
+  });
+
+//or, preffered
+
+function delayed(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function delayedHello() {
+  await delayed(4000);
+  console.log("Delayed hello");
+}
+
+delayedHello();
