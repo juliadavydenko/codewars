@@ -124,3 +124,15 @@ YesNoFail4Seconds()
   .catch((error) => {
     console.log(error);
   });
+
+// consuming this func using async await
+
+async function asyncAwaitYesNo() {
+  try {
+    const data = await YesNoFail4Seconds();
+    console.log(`The answer is ${data}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
+asyncAwaitYesNo();
