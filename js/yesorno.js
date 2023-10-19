@@ -136,3 +136,27 @@ async function asyncAwaitYesNo() {
   }
 }
 asyncAwaitYesNo();
+
+
+// ex 5:
+// Using async await
+
+// Fetch the astronauts
+// After the astronauts has been fetched, fetch movies using this api
+// Log out the movies
+
+async function fetchAstronauts() {
+    try {
+        const response = await fetch("http://api.open-notify.org/astros.json");
+        if (!response.ok) {
+           throw new Error("Failed to fetch astronauts")
+        }
+        const astronauts = await response.json();
+        return astronauts;
+    } catch(error) {
+        console.error("Error fetching astronauts", error);
+        throw error
+    }
+}
+
+async function fetchMovies(astronauts)
