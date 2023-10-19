@@ -77,3 +77,19 @@ async function delayedHello() {
 }
 
 delayedHello();
+
+// Now make the promise fail by rejecting it with an error message instead of resolving it, and log the error message to the console.
+
+async function rejected() {
+  try {
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        reject(new Error("Promise rejected"));
+      }, 4000);
+    });
+  } catch (error) {
+    console.error("Error", error.message);
+  }
+}
+
+rejected();
