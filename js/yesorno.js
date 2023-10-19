@@ -93,3 +93,34 @@ async function rejected() {
 }
 
 rejected();
+
+// Create a function that returns a promise, that you can use like this:
+
+// YesNoFail4Seconds should wait 4 seconds before it does one of the following 3 things:
+// resolves with a yes
+// resolves with a no
+// or rejects
+// Look into Math.random()
+
+function YesNoFail4Seconds() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const randomNumber = Math.random();
+      if (randomNumber < 0.5) {
+        resolve("yes");
+      } else if (randomNumber >= 0.5 && randomNumber < 0.9) {
+        resolve("no");
+      } else {
+        reject("Promise failed");
+      }
+    }, 4000);
+  });
+}
+
+YesNoFail4Seconds()
+  .then((data) => {
+    console.log(`The answer is ${data}`);
+  })
+  .catch((error) => {
+    console.log(error);
+  });
