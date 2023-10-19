@@ -1,5 +1,7 @@
 //fetching yes or no from the API using promises
 
+const { response } = require("express");
+
 fetch("https://yesno.wtf/api")
   .then((response) => {
     if (!response.ok) {
@@ -29,3 +31,18 @@ async function yesOrNo() {
   }
 }
 yesOrNo();
+
+// Try fetching a url that rejects fx https://knajskdskj.jasdk. Log out the error message
+
+async function fetchWithError() {
+  try {
+    const response = await fetch("https://knajskdskj.jasdk");
+    if (!response.ok) {
+      throw new Error("There was a problem fetching data", error);
+    }
+    const data = response.json();
+  } catch (error) {
+    console.error("There was an error", error);
+  }
+}
+fetchWithError();
