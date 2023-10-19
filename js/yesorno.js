@@ -17,10 +17,15 @@ fetch("https://yesno.wtf/api")
 //fetching yes or no from the API using async await
 
 async function yesOrNo() {
-try {
-    const response = await fetch('https://yesno.wtf/api');
+  try {
+    const response = await fetch("https://yesno.wtf/api");
     if (!response.ok) {
-        throw new Error("There was a problem with the network response")
+      throw new Error("There was a problem with the network response");
     }
+    const data = await response.json();
+    console.log(data.answer);
+  } catch (error) {
+    console.error("An error occurred", error);
+  }
 }
-}
+yesOrNo();
