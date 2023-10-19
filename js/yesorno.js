@@ -6,3 +6,5 @@ fetch("https://yesno.wtf/api")
   .catch((error) => {
     console.error("An error occurred:", error);
   });
+
+//fetching yes or no from the API using async-await
