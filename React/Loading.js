@@ -17,7 +17,12 @@ const Home = () => {
       });
   }, []);
 
-  return <div className="home">{blogs && <BlogList blogs={blogs} />}</div>;
+  return (
+    <div className="home">
+      {isLoading && <div>Loading...</div>}
+      {blogs && <BlogList blogs={blogs} />}
+    </div>
+  );
 };
 
 export default Home;
