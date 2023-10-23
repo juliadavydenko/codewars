@@ -10,13 +10,17 @@ const Home = () => {
   useEffect(() => {
     fetch("http://localhost:8000/blogs")
       .then((res) => {
+        // 2 error in case that connected to server but response is not ok, or endpoint is wrong
+        if (!res.ok) {
+          throw new Error("connected to server but could not fetch data");
+        }
         return res.json();
       })
       .then((data) => {
         setBlogs(data);
         setIsLoading(false);
       })
-      // error if couldn't even connect to the server
+      // 1 error if couldn't even connect to the server
       .catch((err) => {
         console.log(err.message);
       });
