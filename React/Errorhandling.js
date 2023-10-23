@@ -23,12 +23,15 @@ const Home = () => {
       })
       // 1 error if couldn't even connect to the server
       .catch((err) => {
-        console.log(err.message);
+        setError(err.message);
+        // console.log(err.message);
       });
   }, []);
 
   return (
     <div className="home">
+      {/* output if have a value for error, conditional rendering (when we set an error) */}
+      {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
       {blogs && <BlogList blogs={blogs} />}
     </div>
