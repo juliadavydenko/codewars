@@ -16,6 +16,7 @@ const Home = () => {
         setBlogs(data);
         setIsLoading(false);
       })
+      // error if couldn't even connect to the server
       .catch((err) => {
         console.log(err.message);
       });
