@@ -6,6 +6,7 @@ import BlogList from "./BlogList";
 const Home = () => {
   const [blogs, setBlogs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null); //store an error in state to output in in the browser
 
   useEffect(() => {
     fetch("http://localhost:8000/blogs")
