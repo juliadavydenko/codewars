@@ -20,9 +20,13 @@ const Home = () => {
       .then((data) => {
         setBlogs(data);
         setIsLoading(false);
+        // set error to null if we have data
+        setError(null);
       })
       // 1 error if couldn't even connect to the server
       .catch((err) => {
+        // so that loading message dissapear
+        setIsLoading(false);
         setError(err.message);
         // console.log(err.message);
       });
