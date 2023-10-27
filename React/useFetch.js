@@ -31,6 +31,8 @@ const useFetch = (url) => {
           // console.log(err.message);
         });
     }, 1000);
-  }, []);
+  }, [url]);
   return;
 };
+
+export default useFetch;
