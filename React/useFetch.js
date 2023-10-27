@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 
-const useFetch = () => {
+const useFetch = (url) => {
   const [blogs, setBlogs] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null); //store an error in state to output in in the browser
 
   useEffect(() => {
     setTimeout(() => {
-      fetch("http://localhost:8000/blogs")
+      fetch(url) // make reusable instead of hard-coding "http://localhost:8000/blogs"
         .then((res) => {
           // 2 error in case that connected to server but response is not ok, or endpoint is wrong
           if (!res.ok) {
