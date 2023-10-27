@@ -32,7 +32,7 @@ const useFetch = (url) => {
         });
     }, 1000);
   }, [url]);
-  return;
+  return { data, isLoading, error };
 };
 
 export default useFetch;
