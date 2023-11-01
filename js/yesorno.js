@@ -137,7 +137,6 @@ async function asyncAwaitYesNo() {
 }
 asyncAwaitYesNo();
 
-
 // ex 5:
 // Using async await
 
@@ -146,17 +145,46 @@ asyncAwaitYesNo();
 // Log out the movies
 
 async function fetchAstronauts() {
-    try {
-        const response = await fetch("http://api.open-notify.org/astros.json");
-        if (!response.ok) {
-           throw new Error("Failed to fetch astronauts")
-        }
-        const astronauts = await response.json();
-        return astronauts;
-    } catch(error) {
-        console.error("Error fetching astronauts", error);
-        throw error
+  try {
+    const response = await fetch("http://api.open-notify.org/astros.json");
+    if (!response.ok) {
+      throw new Error("Failed to fetch astronauts");
     }
+    const astronauts = await response.json();
+    return astronauts;
+  } catch (error) {
+    console.error("Error fetching astronauts", error);
+    throw error;
+  }
 }
 
-async function fetchMovies(astronauts)
+async function fetchMovies(astronauts) {
+  try {
+    const moviePromises = astronauts.map(async (astronaut) => {
+      const response = await fetch(
+        "https://gist.githubusercontent.com/pankaj28843/08f397fcea7c760a99206bcb0ae8d0a4/raw/02d8bc9ec9a73e463b13c44df77a87255def5ab9/movies.json/${astronaut.id}"
+      );
+      if (!response.ok) {
+        throw new Error(
+          "Failed to fetch movies for astronaut ${astronaut.name}"
+        );
+      }
+      return response.json();
+    });
+    const movies = await Promise.all(moviePromises);
+    return movies;
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    throw error;
+  }
+}
+async function main() {
+  try {
+    const astronauts = await fetchAstronauts();
+    const movies = await fetchMovies(astronauts);
+    console.log("Movies:", movies);
+  } catch (error) {
+    console.error("An error occured", error);
+  }
+}
+main();
